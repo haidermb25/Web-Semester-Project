@@ -1,0 +1,148 @@
+
+<!doctype html>
+
+<html lang="en"> 
+
+ <head> 
+
+  <meta charset="UTF-8"> 
+
+  <title>CodePen - Animated Login Form using Html &amp; CSS Only</title> 
+
+  <script src="signUp.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="signIn.css"> 
+
+ </head> 
+
+ <body> <!-- partial:index.partial.html --> 
+
+  <section> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+
+   <div class="signin" style="width: 600px;"> 
+
+    <div class="content"> 
+
+     <h2>Sign Up</h2> 
+
+     <form action="/signUp" method="post" class="frmData" enctype="multipart/form-data" >
+     <div class="form"> 
+
+      <div class="inputBox"> 
+
+       <input type="text" id="userName" name="Name" required> <i>Username</i> 
+
+      </div> 
+
+      <div class="inputBox"> 
+
+       <input type="email" id="Email" name="Email" required> <i>Email</i> 
+
+      </div> 
+      
+      <div class="inputBox"> 
+
+        <input type="password" id="password" name="Password" required> <i>Password</i> 
+ 
+       </div> 
+ 
+       <div class="inputBox"> 
+ 
+        <input type="password" id="confirmPassword" name="confirmPassword" required> <i>ConfirmPassword</i> 
+ 
+       </div> 
+
+        <select id="role" name="Gender" required>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+      </select>
+ <!--Radio Button-->
+       <div class="radio">
+        <div class="radio1">
+        <div class="radioButton">
+        <input type="radio" id="doctorCheckbox" name="Role" value="Doctor" required> 
+        </div> 
+        <div class="label">
+        <label for="doctorCheckbox">Doctor</label>
+        </div>
+        </div>
+        <div class="radio1">
+        <div class="radioButton">
+        <input type="radio" id="patientCheckbox" name="Role" value="Patient" required>
+        </div> 
+        <div class="label">
+        <label for="patientCheckbox">Patient</label> 
+        </div>
+      </div>
+        </div>
+
+        <div class="inputBox"> 
+ 
+          <input type="file" id="uploadFile" name="uploadFile" required>
+   
+         </div>   
+
+    </form>
+      <div class="links"><a href="signIn.html">SignIn</a> 
+
+      </div> 
+
+      <div class="inputBox"> 
+
+       <input type="submit" value="signUp"> 
+
+      </div> 
+
+     </div> 
+
+    </div> 
+
+   </div> 
+
+  </section> <!-- partial --> 
+
+<!--Entering the doctor data-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h1 class="modal-title fs-5 text-success" id="exampleModalLabel">Doctor Profile</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <!-- Specialization (important) -->
+              <div class="mb-3">
+                  <label for="specialization" class="form-label text-success">Specialization</label>
+                  <input type="text" class="form-control border-success rounded-pill shadow-sm" id="specialization" name="Specialization">
+              </div>
+              <!-- Experience (important) -->
+              <div class="mb-3">
+                  <label for="experience" class="form-label text-success">Experience (Years)</label>
+                  <input type="number" class="form-control border-success rounded-pill shadow-sm" id="experience" name="Experience">
+              </div>
+              <!-- Other Less Important Inputs (minimized) -->
+              <div class="mb-3">
+                  <label for="qualifications" class="form-label text-success">Qualifications</label>
+                  <textarea class="form-control border-success rounded shadow-sm" id="qualifications" name="Qualifications" rows="2"></textarea>
+              </div>
+              <div class="mb-3">
+                  <label for="insurance" class="form-label text-success">Insurance Accepted</label>
+                  <input type="text" class="form-control border-success rounded-pill shadow-sm" id="insurance" name="Insurance">
+              </div>
+              <!-- Other Less Important Inputs (minimized) -->
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-success" id="saveChangesBtn">Save Changes</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+ </body>
+
+</html>
+

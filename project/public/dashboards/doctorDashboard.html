@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+  />
+  <script src="Dashboard.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="doctorDashboard.js"></script>
+  <link rel="stylesheet" href="patientDashboard.css" />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  />
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"
+  ></script>
+  <body>
+    <!--Dashboard of the user-->
+    <div class="container-fluid">
+      <div class="row">
+        <!-- This column is for the sidebar -->
+        <!--*******************************************************************************************************************************************-->
+        <div class="col-xs-12 col-lg-2 border border-2 sideBar mt-0.5">
+          <!--Icon of the app-->
+          <div class="row text-center">
+            <div class="col-12 appIcon mt-4 ml-5 text-success">
+              <h4><b>Health couch</b></h4>
+            </div>
+          </div>
+
+          <!--Buttons for the menus-->
+          <div class="row">
+            <button
+              type="button"
+              id="Dashboard1"
+              class="btn btn-outline-success buttonDesign d-flex justify-content-start align-items-center"
+            >
+              <i class="fas fa-tachometer-alt ms-4"></i>
+              <!-- ms-1 adds margin to the left of the icon -->
+              <span class="d-none d-sm-block flex-fill text-center me-4"
+                >Dashboard</span
+              >
+              <!-- Hide text on small screens and center it -->
+            </button>
+
+            <button
+              type="button"
+              id="Doctor1"
+              class="btn btn-outline-success buttonDesign d-flex justify-content-start align-items-center"
+            >
+              <i class="fas fa-user-md ms-4"></i>
+              <!-- ms-1 adds margin to the left of the icon -->
+              <span class="d-none d-sm-block flex-fill text-center me-4"
+                >Consults</span
+              >
+              <!-- Hide text on small screens and center it -->
+            </button>
+
+            <button
+              type="button"
+              id="History1"
+              class="btn btn-outline-success buttonDesign d-flex justify-content-start align-items-center"
+            >
+              <i class="fas fa-history ms-4"></i>
+              <!-- ms-1 adds margin to the left of the icon -->
+              <span class="d-none d-sm-block flex-fill text-center me-4"
+                >History</span
+              >
+              <!-- Hide text on small screens and center it -->
+            </button>
+
+            <button
+              type="button"
+              id="Help1"
+              class="btn btn-outline-success buttonDesign d-flex justify-content-start align-items-center"
+            >
+              <i class="fas fa-question-circle ms-4"></i>
+              <!-- ms-1 adds margin to the left of the icon -->
+              <span class="d-none d-sm-block flex-fill text-center me-4"
+                >Help</span
+              >
+              <!-- Hide text on small screens and center it -->
+            </button>
+          </div>
+          <!--Buttons for the add new appointment-->
+          <div class="row bg-success-subtle newAppointmentButton">
+            <div class="col data">
+              <h6>Make an Appointment</h6>
+            </div>
+            <div class="col add">
+              <button
+                type="button"
+                class="bg-success"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              >
+                +
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!--Here we show the popup of the new appointment-->
+
+        <!-- Modal -->
+        
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 text-success" id="exampleModalLabel">Doctor Appointment</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Doctor Selection -->
+        <div class="mb-3">
+          <label for="doctor" class="form-label text-success">Doctor</label><br>
+          <label for="timeInput">Start Time:</label>
+          <input class="form-select border-success rounded-pill " type="time" id="startTime">
+
+          <label for="timeInput">End Time:</label>
+          <input class="form-select border-success rounded-pill " type="time" id="endTime">
+
+
+          <label for="dayInput">Day:</label>
+          <select class="form-select border-success rounded-pill shadow-sm" id="dayInput">
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>s
+            <option value="Friday">Friday</option>
+            
+            <!-- Add more options for other available times -->
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success timeSlot">Add Time Slot</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+        
+          
+
+        <!--*****************************************************************************************************************************************-->
+
+        <!-- This column is for the center div where we show all the data -->
+        <div class="col-xs-12 col-lg-7" id="contentColumn">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-lg-11 startUpPage"> 
+                  <img src="doctor.png" class="img-fluid rounded " alt="..." style="height:100%">
+                </div>
+            </div>
+          <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-lg-11">
+              <div class="row">
+                <!-- Dashboard column is here -->
+                <div
+                  class="col bg-success-subtle content mt-1"
+                  id="Dashboard"
+                  style="display: none"
+                >
+                  <h1 class="text-success"><b>Dashboard</b></h1>
+                  <!--DashBoard Card-->
+                  <div
+                    class="row d-flex justify-content-center align-items-center mt-4 mb-4"
+                  >
+                    <div class="col-11 dashboardCard">
+                      <!--Picture of the doctor and some text-->
+                      <div class="row">
+                        <div class="col-4 doctorImage">
+                          <img src="doctor.png" alt="Doctor Image" />
+                        </div>
+                        <div class="col-7 doctorText">
+                          <h2><span>Health</span> Couch</h2>
+                          <p>
+                            A doctor online website connects patients with
+                            medical professionals virtually, offering services
+                            such as consultations, prescriptions, and medical
+                            advice through video calls or chat platforms.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--More about the user information-->
+                  <div class="row d-flex justify-content-center align-items-center mb-3">
+                    <div class="col-11">
+                        <div class="row">
+                            <div class="col-5 bg-white mr-5 chart">
+                                <canvas id="myChart" width="300" height="250"></canvas>
+                              </div>
+                              <div class="col-3 bg-white mr-2 chart text">
+                                <canvas id="myDonutChart" width="200" height="400 "></canvas>
+                                <p></p>
+                              </div>
+                              <div class="col-3 ">
+                                <div class="row">
+                                  <div class="col-10 bg-white chart">
+                                    <div class="row">
+                                        <div class="col-5 doctorIcon mt-4 ml-1">
+                                            <i class="fas fa-user-md"></i>
+                                        </div>
+                                        <div class="col-5 doctorAmount">
+                                            <p class="mr-5">Doctors</p>
+                                            <h1 class="mb-4 ml-2
+                                            ">28</h2>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row mt-3 ">
+                                  <div class="col-10 bg-white chart">
+                                    <div class="row">
+                                        <div class="col-5 doctorIcon mt-4 ml-1">
+                                            <i class="fas fa-user-injured"></i>
+                                        </div>
+                                        <div class="col-5 doctorAmount">
+                                            <p class="mr-5">Patient</p>
+                                            <h1 class="mb-4 ml-2
+                                            ">28</h2>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                  </div>
+
+                  <!--Some Buttons to go on the other forms-->
+                  <div class="row d-flex justify-content-center align-items-center mb-3">
+                    <div class="col-11">
+                    <div class="row">
+                        <div class="col-3 bg-white chart text-center">
+                            <i class="fas fa-user-md ms-4"></i>
+                            <p>Navigate to the history page for past records.</p>
+                            </div>
+                        <div class="col-3 bg-white chart text-center">
+                            <i class="fas fa-history"></i>
+                            <p>Navigate to the doctor's profile for detailed information.</p>
+                        </div>
+                        <div class="col-2 bg-white chart text-center">
+                            <i class="fas fa-question-circle"></i>
+                            <p>Navigate to the help section for assistance and guidance.</p>
+                        </div>
+                        
+                        <div class="col-2 bg-white chart text-center">
+                            <i class="fas fa-question-circle"></i>
+                            <p>Navigate to the help section for assistance and guidance.</p>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+
+                </div>
+                <!-- Doctor column is here -->
+                <div
+                  class="col bg-success-subtle content mt-1"
+                  id="Doctor"
+                  style=" display: none"
+                >
+                  <h1 class="text-success"><b>Doctor</b></h1>
+                  <div class="row d-flex justify-content-center align-items-center mb-3 mt-4">
+                    <div class="col-11 bg-white doctorSearchBar">
+                        <div class="row">
+                        <div class="col-4">
+                            <h5 class="mt-3">Search Here</h5>
+                            <input type="text" class="mb-3 " placeholder="Search for doctors">    
+                        </div>
+                        <div class="col-3 categories">
+                            <h5 class="mt-3">Category</h5>
+                            <select id="category" name="cars ml-2" >
+                                <option value="volvo">Volvo</option>
+                                <option value="saab">Saab</option>
+                                <option value="mercedes">Mercedes</option>
+                                <option value="audi">Audi</option>
+                            </select>
+                        </div>
+
+
+                        <div class="col-3 types">
+                          <h5 class="mt-3">Types</h5>
+                          <select id="type" name="cars ml-2" >
+                              <option value="volvo">Volvo</option>
+                              <option value="saab">Saab</option>
+                              <option value="mercedes">Mercedes</option>
+                              <option value="audi">Audi</option>
+                          </select>
+                      </div>
+                    </div>
+                </div>
+                  </div>
+                  <div class="row d-flex justify-content-center align-items-center mb-3 mt-4 ">
+                    <div class="col-11 bg-white doctorTable">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Column 1</th>
+                                    <th>Column 2</th>
+                                    <th>Column 3</th>
+                                    <th>Column 4</th>
+                                    <th>View detail</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Data 1</td>
+                                    <td>Data 2</td>
+                                    <td>Data 3</td>
+                                    <td>Data 4</td>
+                                    <td><i class="fas fa-info-circle"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>Data 5</td>
+                                    <td>Data 6</td>
+                                    <td>Data 7</td>
+                                    <td>Data 8</td>
+                                    <td><i class="fas fa-info-circle"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>Data 9</td>
+                                    <td>Data 10</td>
+                                    <td>Data 11</td>
+                                    <td>Data 12</td>
+                                    <td><i class="fas fa-info-circle"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>Data 13</td>
+                                    <td>Data 14</td>
+                                    <td>Data 15</td>
+                                    <td>Data 16</td>
+                                    <td><i class="fas fa-info-circle"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>Data 17</td>
+                                    <td>Data 18</td>
+                                    <td>Data 19</td>
+                                    <td>Data 20</td>
+                                    <td><i class="fas fa-info-circle"></i></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                  </div>
+                </div>
+                <!-- History column is here -->
+                <div
+                  class="col bg-success-subtle content mt-1"
+                  id="History"
+                  style=" display: none"
+                >
+                
+                <h4><b><u>New Appointments</u></b></h4>
+                  <div class="row d-flex justify-content-center align-items-center mb-3 mt-4 ">
+                    <div class="col-11 bg-white doctorTable appointmentRecord">
+                      <table>
+                        <thead>
+                            <tr>
+                                <th>Patient Email</th>
+                                <th>Doctor Email</th>
+                                <th>Time slot</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Data 1</td>
+                                <td>Data 2</td>
+                                <td>Data 3</td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>Data 5</td>
+                                <td>Data 6</td>
+                                <td>Data 7</td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>Data 9</td>
+                                <td>Data 10</td>
+                                <td>Data 11</td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>Data 13</td>
+                                <td>Data 14</td>
+                                <td>Data 15</td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>Data 17</td>
+                                <td>Data 18</td>
+                                <td>Data 19</td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                       
+                    </div>
+                  </div>
+                  <button type="button" class="btn btn-success saveButton">Save</button><br>
+                  <h4><b><u>Completed Appointments</u></b></h4>
+                  <div class="row d-flex justify-content-center align-items-center mb-3 mt-4 ">
+                    <div class="col-11 bg-white doctorTable completedAppointment">
+                      <table>
+                        <thead>
+                            <tr>
+                                <th>Patient Email</th>
+                                <th>Doctor Email</th>
+                                <th>Time slot</th>
+                                <th>View detail</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Data 2</td>
+                                <td>Data 3</td>
+                                <td>Data 4</td>
+                                <td><i class="fas fa-info-circle"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Data 6</td>
+                                <td>Data 7</td>
+                                <td>Data 8</td>
+                                <td><i class="fas fa-info-circle"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Data 10</td>
+                                <td>Data 11</td>
+                                <td>Data 12</td>
+                                <td><i class="fas fa-info-circle"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Data 14</td>
+                                <td>Data 15</td>
+                                <td>Data 16</td>
+                                <td><i class="fas fa-info-circle"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Data 18</td>
+                                <td>Data 19</td>
+                                <td>Data 20</td>
+                                <td><i class="fas fa-info-circle"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                  </div>
+                </div>
+                <!-- Help column is here -->
+                <div class="col bg-success-subtle content mt-1" id="Help" style="display: none">
+                  <h1 class="text-success"><b>Time slots</b></h1>
+                  <div class="row d-flex justify-content-center align-items-center mb-3 mt-4 ">
+                    <div class="col-11 bg-white doctorTable timeSlotTable">
+                      <table>
+                        <thead>
+                            <tr>
+                                <th>Doctor Id</th>
+                                <th>Start Time</th>
+                                <th>End Time</th>
+                                <th>Day</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Data 1</td>
+                                <td>Data 2</td>
+                                <td>Data 3</td>
+                                <td>Data 4</td>
+                                <td><i class="fas fa-edit"></i></td>
+                                <td><i class="fas fa-trash-alt"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Data 5</td>
+                                <td>Data 6</td>
+                                <td>Data 7</td>
+                                <td>Data 8</td>
+                                <td><i class="fas fa-edit"></i></td>
+                                <td><i class="fas fa-trash-alt"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Data 9</td>
+                                <td>Data 10</td>
+                                <td>Data 11</td>
+                                <td>Data 12</td>
+                                <td><i class="fas fa-edit"></i></td>
+                                <td><i class="fas fa-trash-alt"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Data 13</td>
+                                <td>Data 14</td>
+                                <td>Data 15</td>
+                                <td>Data 16</td>
+                                <td><i class="fas fa-edit"></i></td>
+                                <td><i class="fas fa-trash-alt"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Data 17</td>
+                                <td>Data 18</td>
+                                <td>Data 19</td>
+                                <td>Data 20</td>
+                                <td><i class="fas fa-edit"></i></td>
+                                <td><i class="fas fa-trash-alt"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                       
+                    </div>
+                  </div>
+                  <h1 class="text-success"><b>Help</b></h1>
+              
+                  <div class="row justify-content-center align-items-center mb-3 mt-4">
+                      <div class="col-3 bg-white mr-3  help text-center">
+                        <h5>Purpose of website</h5>
+                        <p>The medical website offers vital healthcare resources, promoting informed decisions and accessibility.</p>
+                        </div>
+                      <div class="col-3 bg-white mr-1  help text-center">
+                        <h5>Function of website</h5>
+                        <p>Book doctor appointments seamlessly through our website for efficient medical consultations.</p>
+                      </div>
+                      <div class="col-3 bg-white ml-1  help text-center">
+                        <h5>Function of website</h5>
+                        <p>Book doctor appointments seamlessly through our website for efficient medical consultations.</p>
+                       
+                      </div>
+                  </div>
+
+                  <div class="row justify-content-center align-items-center mb-3 mt-4">
+                    <div class="col-11 text-center bg-white moreHelp">
+                      Welcome to our website, where you can access a wealth of valuable healthcare information, 
+                      ranging from medical conditions and treatments to wellness tips and professional resources.
+                       Our platform simplifies the process of booking appointments with skilled healthcare providers,
+                        ensuring timely access to medical expertise. Whether you're seeking routine check-ups, specialized 
+                        treatments, or telemedicine consultations, our user-friendly interface and comprehensive database
+                         empower you to make informed decisions about your health.
+                       Explore our website today to discover a world of healthcare convenience at your fingertips.
+                    </div>
+                    </div>
+              </div>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--*****************************************************************************************************************************************-->
+
+        <!-- This column is for showing the right side user profile -->
+
+        <div class="col-xs-12 col-lg-3 border border-2 userProfile mt-0.5">
+          <!--Picture of the employee-->
+          <div class="row" id="completeProfile">
+            <div class="row picture-row">
+              <div class="col" id="pictureRow">
+                <b>Doctor Profile</b>
+                <p>
+                  <span class="text-success"><b>70%</b></span> you're success
+                </p>
+              </div>
+              <div class="col closeDots">
+                <button type="button" class="float-end" id="closeButton">
+                  <h1>...</h1>
+                </button>
+              </div>
+            </div>
+            <div class="row profilePicture">
+              <div
+                class="col text-center d-flex flex-column justify-content-center align-items-center mb-5"
+              >
+                <div class="pictureBorder">
+                  <img src="ali.PNG" alt="" />
+                </div>
+                <h6 class="mb-1"><b>Ali Haider</b></h6>
+                <p>alihaider12345@gmail.com</p>
+              </div>
+            </div>
+          </div>
+          <div class="row" id="personalInformation">
+            <h5><b>About</b></h5>
+            <div class="about d-flex flex-column justify-content-center">
+              <div class="info1 bg-success-subtle text-success">
+                <p id="name">abc</p>
+              </div>
+
+              <div class="info1 bg-success-subtle mt-2 text-success">
+                <p id="email">abc@gmail.com</p>
+              </div>
+
+              <div class="info1 bg-success-subtle mt-2 text-success">
+                <p id="gender">male</p>
+              </div>
+
+              <div class="info1 bg-success-subtle mt-2 text-success">
+                <p id="role">No</p>
+              </div>
+            </div>
+          </div>
+          <div class="row" id="otherDataInfo">
+            <div class="row" id="personalInformation">
+              <h5><b>Suggestion</b></h5>
+              <div class="about d-flex flex-column justify-content-center">
+                <div class="info1 bg-success-subtle text-success">
+                  <p>"Stay Strong, Heal"</p>
+                </div>
+
+                <div class="info1 bg-success-subtle mt-2 text-success">
+                  <p>"Hope, Courage, Resilience"</p>
+                </div>
+
+                <div class="info1 bg-success-subtle mt-2 text-success">
+                  <p>"Wellness, Vitality, Happiness"</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Icon of the person which will show when we minimize the profile picture-->
+    <div id="logo">
+      <i class="fas fa-user"></i>
+    </div>
+  </body>
+</html>
+<!-- Your JavaScript code for chart initialization -->
+<script>
+    // Sample data for the chart
+// Line chart data
+const lineChartData = {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    datasets: [{
+        label: 'Doctor Visits',
+        backgroundColor: '#198754', // Green background color
+        borderColor: '#198754', // Green border color
+        data: [10, 20, 30, 40, 50, 60, 70]
+    }, {
+        label: 'Patient Visits',
+        backgroundColor: '#6c757d', // Dark grey background color
+        borderColor: '#6c757d', // Dark grey border color
+        data: [20, 30, 40, 50, 60, 70, 80]
+    }]
+};
+
+// Line chart configuration options
+const lineChartConfig = {
+    type: 'line',
+    data: lineChartData,
+    options: {
+        scales: {
+            x: {
+                grid: {
+                    color: 'rgba(0, 255, 0, 0.1)' // Green color for x-axis grid lines
+                },
+                ticks: {
+                    color: 'green' // Green color for x-axis labels
+                }
+            },
+            y: {
+                grid: {
+                    color: 'rgba(0, 255, 0, 0.1)' // Green color for y-axis grid lines
+                },
+                ticks: {
+                    color: 'green' // Green color for y-axis labels
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                labels: {
+                    color: 'green' // Green color for legend labels
+                }
+            }
+        }
+    }
+};
+
+// Donut chart data
+const donutChartData = {
+    labels: ['Doctor Visits', 'Patient Visits'],
+    datasets: [{
+        label: 'Visits',
+        data: [150, 200], // Assuming 150 doctor visits and 200 patient visits
+        backgroundColor: ['#198754', '#63c2de'], // Green and light blue colors
+        hoverOffset: 4 // Space between segments when hovered
+    }]
+};
+
+// Donut chart configuration options
+const donutChartConfig = {
+    type: 'doughnut',
+    data: donutChartData,
+    options: {
+        plugins: {
+            legend: {
+                position: 'top', // Position of the legend
+                labels: {
+                    color: 'green' // Color of the legend labels
+                }
+            }
+        }
+    }
+};
+
+// Initialize the line chart
+var lineChart = new Chart(document.getElementById('myChart'), lineChartConfig);
+
+// Initialize the donut chart
+var donutChart = new Chart(document.getElementById('myDonutChart'), donutChartConfig);
+
+</script>
