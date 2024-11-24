@@ -16,10 +16,14 @@ app.use(express.static(publicPath));
 
 
 // Connect to MongoDB
-mongoose.connect('mongodb://127.0.0.1:27017/programmer')
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connection established!!!"))
   .catch(err => console.log("MongoDB Error!!!", err));
 
+// Root route
+app.get('/', (req, res) => {
+  res.send('Welcome to the application!');
+});
 
 // Routes
 app.use('/', validationRoute);
