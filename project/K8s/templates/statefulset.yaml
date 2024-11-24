@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: K8s
+spec:
+  selector:
+    matchLabels:
+      app: K8s
+  template:
+    metadata:
+      labels:
+        app: K8s
+    spec:
+      containers:
+        - name: mongodb
+          image: mongodb://mongo:27017/programmer
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: mongodb-data
+              mountPath: /data/db
+  volumeClaimTemplates:
+    - metadata:
+        name: mongodb-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 1Gi
+

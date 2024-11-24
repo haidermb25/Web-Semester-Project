@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: K8s
+  labels:
+    app: K8s
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: K8s
+  template:
+    metadata:
+      labels:
+        app: K8s
+    spec:
+      containers:
+        - name: K8s
+          image: {{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}
+          ports:
+            - containerPort: 3000
+          env:
+            - name: MONGO_URI
+              value: mongodb://mongo:27017/programmer
+---
+
