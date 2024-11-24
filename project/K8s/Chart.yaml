@@ -1,7 +1,0 @@
-apiVersion: v2
-name: K8s
-description: A Helm chart for deploying Node.js app with MongoDB
-type: application
-version: 0.1.0
-appVersion: "1.0.0"
-
