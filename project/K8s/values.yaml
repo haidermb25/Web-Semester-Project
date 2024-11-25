@@ -1,0 +1,32 @@
+replicaCount: 2
+
+image:
+  repository: tanees012/exp-app
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  hosts:
+    - host: exp-app.local
+      paths:
+        - path: /
+          pathType: Prefix
+          
+secret:
+  username: admin
+  password: securepassword
+  
+service:
+  type: LoadBalancer
+
+
+resources: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}
+

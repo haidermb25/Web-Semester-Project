@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: exp-app
+spec:
+  serviceName: exp-app-service
+  replicas: 1
+  selector:
+    matchLabels:
+      app: exp-app
+  template:
+    metadata:
+      labels:
+        app: exp-app
+    spec:
+      containers:
+        - name: web
+          image: tanees012/exp-app:latest
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: mongo-data
+              mountPath: /data/db
+  volumeClaimTemplates:
+    - metadata:
+        name: mongo-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 1Gi
+
