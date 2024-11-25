@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exp-app
+  labels:
+    app: exp-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: exp-app
+  template:
+    metadata:
+      labels:
+        app: exp-app
+    spec:
+      containers:
+        - name: web
+          image: tanees012/exp-app:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: MONGO_URI
+              value: "mongodb://mongo-service:27017/programmer"
+

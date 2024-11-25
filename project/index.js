@@ -4,6 +4,25 @@ const path = require('path');
 const multer=require('multer')
 const validationRoute = require('./routes/validationRoute');
 const app = express();
+const client = require('prom-client');
+
+// Create a Registry to register the metrics
+const register = new client.Registry();
+
+// Create a counter
+const httpRequestDurationMicroseconds = new client.Histogram({
+  name: 'http_request_duration_seconds',
+  help: 'Duration of HTTP requests in seconds.',
+  buckets: [0.1, 0.5, 1, 2, 5, 10],
+});
+
+register.registerMetric(httpRequestDurationMicroseconds);
+
+app.get('/metrics', (req, res) => {
+  res.set('Content-Type', register.contentType);
+  res.end(register.metrics());
+});
+
 
 // Middleware to parse URL-encoded request bodies
 app.use(express.urlencoded({ extended: true }));
